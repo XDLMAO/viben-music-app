@@ -3,6 +3,7 @@ import { links } from '../../assets/constants';
 import { NavLink } from 'react-router-dom';
 import { RiCloseLine } from 'react-icons/ri';
 import { HiOutlineMenu } from 'react-icons/hi';
+import { SiMusicbrainz } from 'react-icons/si';
 
 const NavLinks = () => (
 	<div className='flex flex-col md:flex-row gap-10'>
@@ -21,7 +22,8 @@ const Navbar = () => {
 	return (
 		<nav>
 			<div className='hidden md:flex flex-col item-center justify-start md:justify-between md:flex-row'>
-				<div>
+				<div className='flex items-center'>
+					<SiMusicbrainz className='text-cyan-500 mr-1 ' />
 					<h3 className='text-lg font-bold text-cyan-500'>
 						vibenMusic
 					</h3>
