@@ -32,7 +32,7 @@ const Navbar = () => {
 			</div>
 
 			{/* Mobile */}
-			<div className='absolute md:hidden block top-6 right-3'>
+			<div className='absolute md:hidden block top-6 text-white right-3'>
 				{mobileMenuOpen ? (
 					<RiCloseLine
 						className='cursor-pointer w-6 h-6 mr-2'
@@ -50,9 +50,13 @@ const Navbar = () => {
 					mobileMenuOpen ? 'left-0' : '-left-full'
 				}`}
 			>
-				<h3 className='mb-10 text-lg text-white font-bold'>
-					vibenMusic
-				</h3>
+				<div className='flex items-center mb-10 '>
+					<SiMusicbrainz className='text-cyan-500 mr-1 ' />
+
+					<h3 className='text-lg text-cyan-500 font-bold'>
+						vibenMusic
+					</h3>
+				</div>
 				<NavLinks handleClick={() => setMobileMenuOpen(false)} />
 			</div>
 		</nav>
