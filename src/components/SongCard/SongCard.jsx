@@ -2,9 +2,7 @@ import React from 'react';
 import PlayPause from '../PlayPause/PlayPause';
 import { Link } from 'react-router-dom';
 
-const SongCard = ({ song, index }) => {
-	const activeSong = 'test';
-
+const SongCard = ({ song, isPlaying, data, activeSong, index }) => {
 	const handlePauseClick = () => {};
 
 	const handlePlayClick = () => {};
@@ -21,6 +19,8 @@ const SongCard = ({ song, index }) => {
 		} `}
 				>
 					<PlayPause
+						isPlaying={isPlaying}
+						activeSong={activeSong}
 						song={song}
 						handlePause={handlePauseClick}
 						handlePlay={handlePlayClick}
