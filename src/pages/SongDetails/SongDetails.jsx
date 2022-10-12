@@ -2,12 +2,20 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Error, Loader, DetailsHeader } from '../../components';
+import {
+	Error,
+	Loader,
+	DetailsHeader,
+	RelatedSongs,
+} from '../../components';
 import {
 	setActiveSong,
 	playPause,
 } from '../../redux/features/playerSlice';
-import { useGetSongsDetailsQuery } from '../../redux/services/shazamCore';
+import {
+	useGetSongRelatedQuery,
+	useGetSongsDetailsQuery,
+} from '../../redux/services/shazamCore';
 import Navbar from '../../components/Navbar/Navbar';
 import { HeaderSongDetails } from '../../components/Header/Header';
 import TopPlay from '../../components/TopPlay/TopPlay';
@@ -25,6 +33,9 @@ const SongDetails = () => {
 		error,
 	} = useGetSongsDetailsQuery({ songid });
 
+	const { data, isFetching: isFetchingRelatedSongs } =
+		useGetSongRelatedQuery({ songid });
+
 	const handlePauseClick = () => {
 		dispatch(playPause(false));
 	};
@@ -34,7 +45,7 @@ const SongDetails = () => {
 		dispatch(playPause(true));
 	};
 
-	if (isFetchingSongDetails)
+	if (isFetchingSongDetails || isFetchingRelatedSongs)
 		return <Loader title='Loading song details' />;
 
 	if (error) return <Error />;
@@ -64,6 +75,13 @@ const SongDetails = () => {
 							)}
 						</div>
 					</div>
+					<RelatedSongs
+						data={data}
+						isPlaying={isPlaying}
+						activeSong={activeSong}
+						handlePauseClick={handlePauseClick}
+						handlePlayClick={handlePlayClick}
+					/>
 				</div>
 				<div className='xl:sticky relative top-0 h-fit'>
 					<TopPlay />
