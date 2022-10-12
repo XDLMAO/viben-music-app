@@ -8,7 +8,11 @@ import { SiMusicbrainz } from 'react-icons/si';
 const NavLinks = () => (
 	<div className='flex flex-col md:flex-row gap-10'>
 		{links.map((item) => (
-			<NavLink className='font-bold' key={item.name} to={item.to}>
+			<NavLink
+				className=' text-white font-bold'
+				key={item.name}
+				to={item.to}
+			>
 				{item.icon}
 				{item.name}
 			</NavLink>
