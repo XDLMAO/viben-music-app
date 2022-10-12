@@ -7,6 +7,7 @@ import { useGetTopChartsQuery } from '../../redux/services/shazamCore';
 import Error from '../../components/Error/Error';
 import Loader from '../../components/Loader/Loader';
 import SongCard from '../../components/SongCard/SongCard';
+import TopPlay from '../../components/TopPlay/TopPlay';
 
 const Discover = () => {
 	const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Discover = () => {
 			<Navbar />
 			<HeaderDiscover />
 
-			<div className='flex flex-col'>
+			<div className='flex flex-col '>
 				<div>
 					<div>
 						<h2>Discover {genreTitle}</h2>
@@ -41,17 +42,22 @@ const Discover = () => {
 							))}
 						</select> */}
 					</div>
-					<div className='flex flex-wrap sm:justify-start justify-center gap-8'>
-						{data?.map((song, index) => (
-							<SongCard
-								key={song.key}
-								song={song}
-								index={index}
-								isPlaying={isPlaying}
-								activeSong={activeSong}
-								data={data}
-							/>
-						))}
+					<div className='flex xl:flex-row flex-col-reverse'>
+						<div className='max-w-[800px] flex flex-wrap sm:justify-start justify-center gap-4'>
+							{data?.map((song, index) => (
+								<SongCard
+									key={song.key}
+									song={song}
+									index={index}
+									isPlaying={isPlaying}
+									activeSong={activeSong}
+									data={data}
+								/>
+							))}
+						</div>
+						<div className='xl:sticky relative top-0 h-fit'>
+							<TopPlay />
+						</div>
 					</div>
 				</div>
 			</div>
