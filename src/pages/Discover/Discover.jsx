@@ -32,7 +32,7 @@ const Discover = () => {
 			<div className='flex flex-col '>
 				<div>
 					<div>
-						<h2 className='font-bold text-3xl text-white text-left'>
+						<h2 className='font-bold text-3xl text-white text-left mt-4 mb-10'>
 							Discover {genreTitle}
 						</h2>
 						{/* <select>

@@ -4,6 +4,7 @@ import DetailsHeader from './DetailsHeader/DetailsHeader';
 import RelatedSongs from './RelatedSongs/RelatedSongs';
 import SongCard from './SongCard/SongCard';
 import TopPlay from './TopPlay/TopPlay';
+import ArtistCard from './ArtistCard/ArtistCard';
 
 export {
 	Error,
@@ -12,4 +13,5 @@ export {
 	RelatedSongs,
 	SongCard,
 	TopPlay,
+	ArtistCard,
 };
