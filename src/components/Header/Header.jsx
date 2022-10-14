@@ -40,3 +40,11 @@ export const HeaderSongDetails = () => (
 		</h2>
 	</div>
 );
+
+export const HeaderArtistDetails = () => (
+	<div className='discover-header md:mt-4 bg-pink-400 text-white flex items-center justify-center h-[300px] '>
+		<h2 className='text-4xl font-bold text-center'>
+			Artist Details of your picks!
+		</h2>
+	</div>
+);

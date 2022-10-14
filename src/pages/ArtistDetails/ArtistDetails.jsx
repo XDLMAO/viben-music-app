@@ -12,6 +12,9 @@ import {
 } from '../../components';
 
 import { useGetArtistDetailsQuery } from '../../redux/services/shazamCore';
+import Navbar from '../../components/Navbar/Navbar';
+import { HeaderArtistDetails } from '../../components/Header/Header';
+import TopPlay from '../../components/TopPlay/TopPlay';
 
 const ArtistDetails = () => {
 	const { id: artistId } = useParams();
@@ -31,16 +34,29 @@ const ArtistDetails = () => {
 	if (error) return <Error />;
 
 	return (
-		<div className='flex flex-col'>
-			<DetailsHeader artistId={artistId} artistData={artistData} />
+		<section>
+			<Navbar />
+			<HeaderArtistDetails />
 
-			<RelatedSongs
-				data={Object.values(artistData?.songs)}
-				artistId={artistId}
-				isPlaying={isPlaying}
-				activeSong={activeSong}
-			/>
-		</div>
+			<div className='flex xl:flex-row flex-col-reverse justify-between mt-4'>
+				<div className='flex flex-col'>
+					<DetailsHeader
+						artistId={artistId}
+						artistData={artistData}
+					/>
+
+					<RelatedSongs
+						data={Object.values(artistData?.songs)}
+						artistId={artistId}
+						isPlaying={isPlaying}
+						activeSong={activeSong}
+					/>
+				</div>
+				<div className='xl:sticky relative top-0 h-fit'>
+					<TopPlay />
+				</div>
+			</div>
+		</section>
 	);
 };
 
