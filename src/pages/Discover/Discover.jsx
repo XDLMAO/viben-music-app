@@ -3,26 +3,33 @@ import { HeaderDiscover } from '../../components/Header/Header';
 import Navbar from '../../components/Navbar/Navbar';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTopChartsQuery } from '../../redux/services/shazamCore';
+import { useGetSongsByGenreQuery } from '../../redux/services/shazamCore';
+import { selectGenreListId } from '../../redux/features/playerSlice';
 import Error from '../../components/Error/Error';
 import Loader from '../../components/Loader/Loader';
 import SongCard from '../../components/SongCard/SongCard';
 import TopPlay from '../../components/TopPlay/TopPlay';
+import Searchbar from '../../components/Searchbar/Searchbar';
+import { genres } from '../../assets/constants';
 
 const Discover = () => {
 	const dispatch = useDispatch();
-	const { activeSong, isPlaying } = useSelector(
+	const { activeSong, isPlaying, genreListId } = useSelector(
 		(state) => state.player
 	);
-	const { data, isFetching, error } = useGetTopChartsQuery();
-
-	const genreTitle = 'Pop';
+	const { data, isFetching, error } = useGetSongsByGenreQuery(
+		genreListId || 'POP'
+	);
 
 	if (isFetching) return <Loader title='Loading songs...' />;
 
 	if (error) return <Error />;
 
-	console.log(data);
+	const genreTitle = genres.find(
+		({ value }) => value === genreListId
+	)?.title;
+
+	// console.log(data);
 
 	return (
 		<section>
@@ -35,14 +42,23 @@ const Discover = () => {
 						<h2 className='font-bold text-3xl text-white text-left mt-4 mb-10'>
 							Discover {genreTitle}
 						</h2>
-						{/* <select>
-							{genres.map((genre) => (
-								<option
-									key={genre.value}
-									value={genre.value}
-								></option>
-							))}
-						</select> */}
+						<div className='flex '>
+							<Searchbar />
+
+							<select
+								onChange={(e) =>
+									dispatch(selectGenreListId(e.target.value))
+								}
+								value={genreListId || 'pop'}
+								className='bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5'
+							>
+								{genres.map((genre) => (
+									<option key={genre.value} value={genre.value}>
+										{genre.title}
+									</option>
+								))}
+							</select>
+						</div>
 					</div>
 					<div className='flex xl:flex-row flex-col-reverse'>
 						<div className='max-w-[800px] flex flex-wrap sm:justify-start justify-center gap-4'>
