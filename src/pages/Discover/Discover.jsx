@@ -32,7 +32,9 @@ const Discover = () => {
 			<div className='flex flex-col '>
 				<div>
 					<div>
-						<h2>Discover {genreTitle}</h2>
+						<h2 className='font-bold text-3xl text-white text-left'>
+							Discover {genreTitle}
+						</h2>
 						{/* <select>
 							{genres.map((genre) => (
 								<option
