@@ -21,7 +21,7 @@ function App() {
 	const { activeSong } = useSelector((state) => state.player);
 
 	return (
-		<div className='App'>
+		<div>
 			<Routes>
 				<Route path='/' element={<Discover />} />
 				<Route path='/top-artists' element={<TopArtists />} />
